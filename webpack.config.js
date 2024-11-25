@@ -1,7 +1,15 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-export default {
+
+export default async () => 
+  { 
+  let response = await fetch('https://rickandmortyapi.com/api/character');
+  let body = await response.json();
+  let characters = body.results;
+  console.log(body);
+
+  return {
   entry: './src/index.js',
   output: {
     filename: 'main.js',
@@ -48,7 +56,11 @@ export default {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.njk'
+      template: './src/index.njk',
+      templateParameters: {
+        name: 'Mark',
+        characters, //characters: characters
+      }
     }),
     new HtmlWebpackPlugin({
       filename: 'about.html',
@@ -56,4 +68,5 @@ export default {
     }),
 
   ],
+};
 };
