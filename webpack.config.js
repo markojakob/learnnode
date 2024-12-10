@@ -3,7 +3,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 
 export default async () => {
-  let response = await fetch('https://rickandmortyapi.com/api/character');
+  let response = await fetch('https://rickandmortyapi.com/api/character?page=17');
   let body = await response.json();
   let characters = body.results;
   let pages = []
