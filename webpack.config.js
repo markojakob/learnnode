@@ -1,23 +1,11 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-
 export default async () => {
-  let response = await fetch('https://rickandmortyapi.com/api/character?page=17');
-  let body = await response.json();
-  let characters = body.results;
-  let pages = []
-  characters.forEach(character => {
-    let page = new HtmlWebpackPlugin({
-      template: './src/character.njk',
-      filename: "character_" + character.id + ".html",
-      templateParameters: {
-        character
-      },
-    });
-    pages.push(page);
-  });
-  console.log(body);
+  let character;
+  const response = await fetch('https://rickandmortyapi.com/api/character/17');
+  character = await response.json();
+
 
   return {
     entry: './src/index.js',
@@ -36,47 +24,41 @@ export default async () => {
       rules: [
         {
           test: /\.css$/i,
-          use: ["style-loader", "css-loader"],
+          use: ['style-loader', 'css-loader'],
         },
         {
           test: /\.scss$/i,
-
           use: [
-            "style-loader", "css-loader",
+            'style-loader',
+            'css-loader',
             {
-              loader: "sass-loader",
+              loader: 'sass-loader',
               options: {
                 sassOptions: {
-                  quietDeps: true
-                }
-              }
-            }
-          ]
+                  quietDeps: true,
+                },
+              },
+            },
+          ],
         },
         {
           test: /\.njk$/,
           use: [
             {
               loader: 'simple-nunjucks-loader',
-              options: {}
-            }
-          ]
-        }
+              options: {},
+            },
+          ],
+        },
       ],
     },
     plugins: [
       new HtmlWebpackPlugin({
         template: './src/index.njk',
         templateParameters: {
-          name: 'Mark',
-          characters, //characters: characters
-        }
+          character, // Andmed API-st
+        },
       }),
-      new HtmlWebpackPlugin({
-        filename: 'about.html',
-        template: './src/about.njk'
-      }),
-      ...pages
     ],
   };
 };
