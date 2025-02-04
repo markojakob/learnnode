@@ -1,0 +1,13 @@
+<script setup>
+import Modal from './components/Modal.vue';
+defineProps(['active', 'url'])
+
+</script>
+
+<template >
+    <Modal :active="active" @click="$emit('close')">
+        <p class="image is-4by3">
+            <img :src="url" alt="">
+        </p>
+    </Modal>
+</template>
