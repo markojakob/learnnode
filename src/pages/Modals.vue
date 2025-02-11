@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
-import Modal from './components/Modal.vue';
-import ImgModal from './ImgModal.vue';
+import Modal from '../components/Modal.vue';
+import ImgModal from '../components/ImgModal.vue';
 
 let modalActive = ref(false);
 let modalActive2 = ref(false);
@@ -18,7 +18,7 @@ let modalActive3 = ref(false);
         </section>
     </div>
 
-    <ImgModal :active="modalActive" @close="modalActive = false" url="https://picsum.photos/seed/kala/200/300">
+    <ImgModal :active="modalActive" @close="modalActive = false" url="https://picsum.photos/seed/kala/4000/5000">
     </ImgModal>
     <Modal :active="modalActive3" @close="modalActive3 = false">
         <div class="notification is-primary">
@@ -29,7 +29,7 @@ let modalActive3 = ref(false);
             diam, et dictum <a>felis venenatis</a> efficitur.
         </div>
     </Modal>
-    <ImgModal :active="modalActive2" @close="modalActive2 = false" url="https://picsum.photos/seed/kurk/200/300">
+    <ImgModal :active="modalActive2" @close="modalActive2 = false" url="https://picsum.photos/seed/kurk/4000/5000">
     </ImgModal>
 
 </template>

@@ -3,10 +3,9 @@ defineProps(['active', 'url']);
 
 const emit = defineEmits('close');
 document.body.addEventListener('keydown', event => {
-
-if (event.key = 'Escape'){
-    modalActive.value = false;
-}
+    if (event.key === 'Escape') {
+        emit('close');
+    }
 });
 </script>
 
@@ -16,6 +15,6 @@ if (event.key = 'Escape'){
         <div class="modal-content">
             <slot></slot>
         </div>
-        <button class="modal-close is-large"  @click="$emit('close')" aria-label="close"></button>
+        <button class="modal-close is-large" @click="$emit('close')" aria-label="close"></button>
     </div>
 </template>
