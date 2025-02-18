@@ -10,13 +10,13 @@ let modalActive3 = ref(false);
 </script>
 
 <template>
-    <div class="container">
-        <section class="section">
-            <button class="button is-dark" @click="modalActive = true">Modal Activate</button>
-            <button class="button is-light" @click="modalActive2 = true">Modal Activate</button>
-            <button class="button is-warning" @click="modalActive3 = true">Modal Activate</button>
-        </section>
-    </div>
+
+    <section class="section">
+        <button class="button is-dark" @click="modalActive = true">Modal Activate</button>
+        <button class="button is-light" @click="modalActive2 = true">Modal Activate</button>
+        <button class="button is-warning" @click="modalActive3 = true">Modal Activate</button>
+    </section>
+
 
     <ImgModal :active="modalActive" @close="modalActive = false" url="https://picsum.photos/seed/kala/4000/5000">
     </ImgModal>
