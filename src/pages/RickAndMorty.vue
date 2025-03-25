@@ -16,8 +16,6 @@ await getCharacters('https://rickandmortyapi.com/api/character');
 
 async function getCharacters(url) {
     try {
-
-    
     let response = await axios.get('https://rickandmortyapi.com/api/character', {
         params: {
             page: currentPage.value,
@@ -55,8 +53,9 @@ async function page(page) {
 async function search(){
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(async () => {
-        currentPage.value = 1;
         error.value = '';
+        currentPage.value = 1;
+        characters.vlaue = [];
         await getCharacters();
     }, 1000);
 

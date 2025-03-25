@@ -7,13 +7,16 @@ import { RouterView } from 'vue-router';
 
 <template>
     <Tabs></Tabs>
-    <div class="container">
+    <div class="container" v-if="$route.meta.container !== false">
         <section class="section">
             <Suspense>
                 <RouterView></RouterView>
             </Suspense>
         </section>
     </div>
+    <Suspense v-else>
+        <RouterView></RouterView>
+    </Suspense>
 </template>
 
 <style></style>
