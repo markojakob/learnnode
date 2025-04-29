@@ -9,7 +9,7 @@
     "build": "webpack --mode=production",
     "start": "webpack serve --mode=development",
     "deploy": "npm run build && surge ./dist ultra-shoes.surge.sh",
-    "server": "nodemon bin/server.js -w bin/server.js" 
+    "server": "nodemon bin/server.js -w bin/server.js"
   },
   "keywords": [],
   "author": "",
@@ -33,6 +33,7 @@
   "dependencies": {
     "express": "^5.1.0",
     "leaflet": "^1.9.4",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.0",
+    "ws": "^8.18.1"
   }
 }

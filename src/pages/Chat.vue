@@ -4,24 +4,27 @@ import axios from 'axios';
 
 let messages = ref([]);
 let input = ref('');
+// Create WebSocket connection.
+const socket = new WebSocket("ws://localhost:8080");
 
-let res = await axios.get('http://localhost:3000');
-messages.value = res.data;
+// Connection opened
+socket.addEventListener("open", (event) => {
+  socket.send("Hello Server!");
+});
 
-
-const eventSource = new EventSource('http://localhost:3000');
-
-eventSource.addEventListener('message', event => {
-    console.log(event);
-    let data = JSON.parse(event.data);
-    messages.value.push(...data);
-})
+// Listen for messages
+socket.addEventListener("message", (event) => {
+  console.log("Message from server ", event.data);
+  let data = JSON.parse(event.data);
+  if(data.type === 'messages'){
+    messages.value = data.message;
+  } else if (data.type === 'message'){
+    messages.value.push(data);
+  }
+});
 
 async function send() {
-    let res = await axios.post('http://localhost:3000', {
-        message: input.value
-    });
-    console.log(res);
+    socket.send(JSON.stringify({type: 'message', message: input.value}))
     input.value = '';
 }
 </script>
