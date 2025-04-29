@@ -5,7 +5,7 @@ import { VueLoaderPlugin } from 'vue-loader';
 export default {
   entry: './src/index.js',
   output: {
-    filename: 'main.js',
+    filename: 'main.js+',
     path: path.resolve(import.meta.dirname, 'dist'),
     assetModuleFilename: '[name][ext][query]'
   },
