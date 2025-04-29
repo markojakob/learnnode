@@ -8,24 +8,29 @@ let input = ref('');
 let res = await axios.get('http://localhost:3000');
 messages.value = res.data;
 
-setInterval(async () => {
-    let date = messages.value[messages.value.length-1]?.date ?? null
-    let res = await axios.get('http://localhost:3000', {
+longpoll();
+
+function longpoll() {
+    let date = messages.value[messages.value.length - 1]?.date ?? null
+    axios.get('http://localhost:3000/longpoll', {
         params: {
             date: new Date(date)
         }
+    }).then(res => {
+        messages.value.push(...res.data);
+        longpoll();
     });
-    messages.value.push(...res.data);
-}, 1000);
+}
 
 async function send() {
-   let res = await axios.post('http://localhost:3000', {
-    message: input.value
-   });
-   console.log(res);
-   input.value = '';
+    let res = await axios.post('http://localhost:3000', {
+        message: input.value
+    });
+    console.log(res);
+    input.value = '';
 }
 </script>
+
 <template>
     <div class="field has-addons">
         <div class="control is-expanded">
