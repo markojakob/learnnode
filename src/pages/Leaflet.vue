@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import LeafletMap from '../components/LeafletMap.vue';
-let center = ref([59.42681, 24.74352]);
+let center = ref([59.414385, 24.741543]);
 let zoom = ref(19);
 </script>
 
