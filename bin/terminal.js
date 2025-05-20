@@ -10,3 +10,5 @@ setInterval(() => {
     write(ESC + '[8D');
     write(time);
 }, 1000);
+
+
